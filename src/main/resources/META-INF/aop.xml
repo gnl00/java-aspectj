@@ -1,14 +1,15 @@
 <!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "https://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
-
-    <weaver>
+    <weaver options="-verbose">
         <!-- only weave classes in our application-specific packages -->
         <include within="com.demo.service.*"/>
+        <!-- <include within="org.springframework.boot.SpringApplication.*"/> 织入失败-->
+        <include within="org.mybatis.spring.SqlSessionFactoryBean.*"/>
     </weaver>
 
     <aspects>
         <!-- weave this aspect -->
         <aspect name="com.demo.aspect.LogAspect"/>
+        <aspect name="com.demo.aspect.CheckAspect"/>
     </aspects>
-
 </aspectj>
