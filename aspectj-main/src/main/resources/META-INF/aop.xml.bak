@@ -4,12 +4,11 @@
         <!-- only weave classes in our application-specific packages -->
         <include within="com.demo.service.*"/>
         <!-- <include within="org.springframework.boot.SpringApplication.*"/> 织入失败-->
-        <include within="org.mybatis.spring.SqlSessionFactoryBean.*"/>
+        <!-- <include within="org.mybatis.spring.SqlSessionFactoryBean.*"/> 织入失败-->
     </weaver>
 
     <aspects>
         <!-- weave this aspect -->
-        <aspect name="com.demo.aspect.LogAspect"/>
         <aspect name="com.demo.aspect.CheckAspect"/>
     </aspects>
 </aspectj>

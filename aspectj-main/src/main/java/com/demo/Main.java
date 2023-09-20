@@ -1,6 +1,5 @@
 package com.demo;
 
-import com.demo.service.AccountService;
 import com.demo.service.UserService;
 
 public class Main {
@@ -9,7 +8,10 @@ public class Main {
         UserService service = new UserService();
         service.doSomething();
 
-        AccountService account = new AccountService();
-        account.pay(100);
+        UserService user = new UserService();
+        user.pay(200);
+
+        ThirdPartyService third = new ThirdPartyService();
+        third.test();
     }
 }
