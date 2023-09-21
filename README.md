@@ -5,6 +5,8 @@
 * mvn compile
 * RUN aspectj-main com.demo.Main
 
+---
+
 ## AOP
 
 ### AOP 分类
@@ -14,6 +16,8 @@
 
 1、Spring AOP 需要结合 Spring 框架使用，且只能将切面织入 Spring IOC 容器中的 Bean，使用的是 JDK 动态代理。
 2、AspectJ 无框架要求，只要引入 `aspectjrt` 和 `aspectjweaver` 两个依赖即可使用。
+
+---
 
 ### 使用 Spring AOP
 
@@ -53,6 +57,8 @@ public class MyBeforeAspect implements MethodBeforeAdvice {
 #### 注解式 Spring AOP
 
 > 不再展开
+
+---
 
 ### 使用 AspectJ AOP
 
@@ -192,7 +198,7 @@ public class UserService {
 
 6、运行 main 方法查看结果。
 
-
+---
 
 #### .aj 格式
 
@@ -323,7 +329,22 @@ public aspect MybatisAspect {
 
 3、编译、运行、观察结果。
 
+细心观察可以发现， 原本位于第三方 jar 包的类在使用 Post-Compile-Time Weaving 编译后出现到了当前 target 目录中：
 
+![image-20230920153416375](./assets/image-20230920153416375.png)
+
+…
+
+---
+
+### Load Time Weaving
+
+Spring AOP 和 AspectJ 都支持 *Load Time Weaving* 加载时织入，同时它们都需要借助另外的 jar 包来实现：
+
+* Spring AOP 需要借助 `spring-instrument-{version}.jar`，参考 [Spring AOP LTW](https://docs.spring.io/spring-framework/reference/core/aop/using-aspectj.html#aop-aj-ltw)。
+* AspectJ  需要借助 `aspectjweaver-{version}.jar`，参考 [AspectJ LTW](https://eclipse.dev/aspectj/doc/released/devguide/ltw.html)。
+
+---
 
 ## SpringBoot 与 AspectJ
 
@@ -331,6 +352,8 @@ public aspect MybatisAspect {
 
 * `@EnableAspectJAutoProxy` 注解开启 AOP 注解驱动开发。
 * `@EnableLoadTimeWeaving` 切换 AOP 切面织入时期，切换为加载时期织入。是否会切换到加载时期织入主要判断 `META-INF/aop.xml` 配置是否存在，存在则自动开启加载时期织入。
+
+---
 
 ## 参考
 
