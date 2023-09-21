@@ -219,11 +219,11 @@ public class UserService {
 
 // 切面类
 public aspect CheckAspect {
-    // call 表示该断点会在 UserService#pay(int) 方法在被调用的地方织入
+    // call 表示该切入点会在 UserService#pay(int) 方法在被调用的地方织入
     pointcut callPay(UserService userService):
         call(boolean UserService.pay(int)) && target(userService);
 
-    // 切面断点还可以使用第二种方式定义
+    // 切面表达式还可以使用第二种方式定义
     before(): execution(* com.demo.service.UserService.pay(..)) {
         System.out.println("CheckAspect before ==>");
     }
@@ -273,7 +273,7 @@ public static void main(String[] args) {
 
 ---
 
-上面两种开发方式切面类都是在编译时期织入的，称为 *Compile Time Weaving*。当我们需要修改第三方 jar 包中的类时，使用 CTW 织入就错过时机了。因为我们以来的第三方 jar 包是经过编译后的，所以需要在不同的时期进行织入。
+上面两种开发方式切面类都是在编译时期织入的，称为 *Compile Time Weaving*。当我们需要修改第三方 jar 包中的类时，使用 CTW 织入就错过时机了。因为我们依赖的第三方 jar 包是经过编译后的，所以需要在不同的时期进行织入。
 
 ---
 
