@@ -2,8 +2,8 @@
 
 ## How to run
 
-* mvn compile
-* RUN aspectj-main com.demo.Main
+* `mvn compile`
+* RUN aspectj-main `com.demo.Main`
 
 ---
 
@@ -24,11 +24,13 @@
 **注意**
 
 在使用 Spring AOP 的时候会使用到 @Aspect/@Before/@After/@Around 等注解，这些注解来自 AspectJ。
-> 可以这样认为，AspectJ 是 AOP 编程的老大哥，它提出概念，定义了一系列规定，并定义了对应的注解来方便切面编程的开发。可以看到引入 Spring AOP 依赖的同时也会引入 AspectJ：
+> 可以这样认为，AspectJ 是 AOP 编程的老大哥，它提出概念，定义了一系列规定，并定义了对应的注解来方便切面编程的开发。
+>
+> Spring 站在 AspectJ 的基础上，集成了 AspectJ 的注解来进行注解驱动开发。可以看到引入 Spring AOP 依赖的同时也会引入 AspectJ：
 >
 > ![image-20230920141020129](./assets/image-20230920141020129.png)
 >
-> 这是因为 Spring 站在 AspectJ 的基础上，集成了 AspectJ 的注解来进行注解驱动开发。需要注意的是：Spring AOP 仅使用到了 AspectJ 的注解来作为标记，不是使用 AspectJ 来实现切面编程。
+> 需要注意的是：Spring AOP 仅使用到了 AspectJ 的注解来作为标记，不是使用 AspectJ 来实现切面编程。
 
 #### 编程式 Spring AOP
 
@@ -277,7 +279,9 @@ public static void main(String[] args) {
 
 ---
 
-#### Post-Compile Time Weaving
+### Post-Compile Time Weaving
+
+> 编译时织入，在 Java 源码被编译成 class files 之后，被 JVM 加载之前进行织入。
 
 处理第三方 jar 包中的类就需要在编译后织入，只需要在原先的基础进行一些小改动即可。
 
@@ -338,6 +342,8 @@ public aspect MybatisAspect {
 ---
 
 ### Load Time Weaving
+
+> 加载时织入，在类被加载入 JVM 时进行织入。
 
 Spring AOP 和 AspectJ 都支持 *Load Time Weaving* 加载时织入，同时它们都需要借助另外的 jar 包来实现：
 
